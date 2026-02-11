@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dora Luxury Gifting - Download Catalogue</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .luxury-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Subtle Background Animation */
+        .bg-gradient-animate {
+            background: linear-gradient(-45deg, #ffffff, #f5f3ff, #ede9fe, #ffffff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Elements Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: revealUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes revealUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* Floating Blobs Animation */
+        .blob {
+            position: absolute;
+            z-index: -1;
+            filter: blur(60px);
+            border-radius: 50%;
+            animation: blobFloat 20s infinite alternate;
+        }
+
+        @keyframes blobFloat {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 100px); }
+        }
+
+        /* Clean Button Style */
+        .btn-luxury {
+            background-color: #581c87;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-luxury::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-luxury:hover::after {
+            left: 100%;
+        }
+
+        .btn-luxury:hover {
+            background-color: #4c1d95;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-animate relative">
+    
+    <!-- Background Animated Shapes -->
+    <div class="blob w-64 h-64 bg-purple-100 top-10 left-10" style="animation-duration: 25s;"></div>
+    <div class="blob w-80 h-80 bg-purple-200 bottom-10 right-10" style="animation-delay: -5s;"></div>
+
+    <div class="max-w-lg w-full text-center px-8 z-10">
+        
+        <!-- Logo Section (Normal - No Glow/Shadow) -->
+        <div class="flex justify-center mb-10 reveal">
+            <div class="w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
+                <!-- Replace with your actual logo URL -->
+                <img src="logo.png" alt="DORA Logo" class="w-full h-full object-contain">
+            </div>
+        </div>
+
+            <div class="h-px w-20 bg-purple-200 mx-auto reveal delay-2"></div>
+
+            <div class="space-y-3 reveal delay-2">
+                <p class="text-gray-600 text-lg font-light leading-relaxed">
+                    Elevating the art of giving with our <br>
+                    <span class="text-purple-900 font-semibold italic">Exclusive Festive Collection</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Action Section -->
+        <div class="mt-12 space-y-6 reveal delay-3">
+            <a href="DORA PRODUCT CATALOGUE.pdf" download class="btn-luxury block w-full py-5 px-10 text-white rounded-lg text-lg font-medium tracking-wide shadow-sm">
+                DOWNLOAD CATALOGUE
+            </a>
+            
+            <div class="flex flex-col space-y-1">
+                <p class="text-xs text-purple-400 font-medium uppercase tracking-widest">
+                    Corporate & Personal Gifting
+                </p>
+                <p class="text-[10px] text-gray-400">
+                    © 2024 Dora Luxury Gifting. All rights reserved.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
