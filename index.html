@@ -13,30 +13,18 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .luxury-font {
             font-family: 'Playfair Display', serif;
         }
 
-        /* Subtle Background Animation */
-        .bg-gradient-animate {
-            background: linear-gradient(-45deg, #ffffff, #f5f3ff, #ede9fe, #ffffff);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Elements Animation */
+        /* Smooth Reveal Animation */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            animation: revealUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            transform: translateY(20px);
+            animation: revealUp 0.8s ease-out forwards;
         }
 
         @keyframes revealUp {
@@ -46,91 +34,72 @@
             }
         }
 
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
 
-        /* Floating Blobs Animation */
-        .blob {
-            position: absolute;
-            z-index: -1;
-            filter: blur(60px);
-            border-radius: 50%;
-            animation: blobFloat 20s infinite alternate;
+        /* Subtle Pulse for Button */
+        @keyframes softPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
 
-        @keyframes blobFloat {
-            from { transform: translate(0, 0); }
-            to { transform: translate(50px, 100px); }
+        .btn-animate {
+            animation: softPulse 3s infinite ease-in-out;
         }
 
-        /* Clean Button Style */
-        .btn-luxury {
-            background-color: #581c87;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .btn-luxury::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .btn-luxury:hover::after {
-            left: 100%;
-        }
-
-        .btn-luxury:hover {
+        .btn-animate:hover {
+            animation: none;
+            transform: scale(1.05);
             background-color: #4c1d95;
-            letter-spacing: 1px;
+        }
+
+        /* Background Gradient */
+        .bg-custom {
+            background: radial-gradient(circle at top right, #f5f3ff 0%, #ffffff 50%, #fdfaff 100%);
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center bg-gradient-animate relative">
+<body class="bg-custom flex flex-col items-center justify-center p-6 text-center">
     
-    <!-- Background Animated Shapes -->
-    <div class="blob w-64 h-64 bg-purple-100 top-10 left-10" style="animation-duration: 25s;"></div>
-    <div class="blob w-80 h-80 bg-purple-200 bottom-10 right-10" style="animation-delay: -5s;"></div>
+    <!-- Decorative background elements that don't mess with layout -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-50 rounded-full blur-3xl opacity-60"></div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-50 rounded-full blur-3xl opacity-60"></div>
+    </div>
 
-    <div class="max-w-lg w-full text-center px-8 z-10">
+    <!-- Main Content Wrapper (Force Column) -->
+    <div class="flex flex-col items-center w-full max-w-md space-y-12">
         
-        <!-- Logo Section (Normal - No Glow/Shadow) -->
-        <div class="flex justify-center mb-10 reveal">
-            <div class="w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
-                <!-- Replace with your actual logo URL -->
-                <img src="logo.png" alt="DORA Logo" class="w-full h-full object-contain">
-            </div>
+        <!-- 1. Logo Section (Simple & Clean) -->
+        <div class="reveal">
+            <!-- Replace with your actual logo URL -->
+            <img src="logo.png" 
+                 alt="DORA Logo" 
+                 class="w-32 md:w-44 h-auto object-contain mx-auto">
         </div>
 
-            <div class="h-px w-20 bg-purple-200 mx-auto reveal delay-2"></div>
-
-            <div class="space-y-3 reveal delay-2">
-                <p class="text-gray-600 text-lg font-light leading-relaxed">
-                    Elevating the art of giving with our <br>
-                    <span class="text-purple-900 font-semibold italic">Exclusive Festive Collection</span>
-                </p>
-            </div>
+            <div class="h-px w-16 bg-purple-200 mx-auto my-6"></div>
+            
+            <p class="text-gray-500 text-lg font-light leading-relaxed px-4">
+                Elevating the art of giving with our <br>
+                <span class="text-purple-800 font-semibold italic">Exclusive Festive Collection</span>
+            </p>
         </div>
 
-        <!-- Action Section -->
-        <div class="mt-12 space-y-6 reveal delay-3">
-            <a href="DORA PRODUCT CATALOGUE.pdf" download class="btn-luxury block w-full py-5 px-10 text-white rounded-lg text-lg font-medium tracking-wide shadow-sm">
+        <!-- 3. Button Section -->
+        <div class="reveal delay-2 w-full pt-4">
+            <a href="DORA PRODUCT CATALOGUE.pdf" download 
+               class="btn-animate block w-full bg-purple-900 text-white py-5 px-10 rounded-xl text-lg font-medium tracking-widest shadow-lg transition-all">
                 DOWNLOAD CATALOGUE
             </a>
             
-            <div class="flex flex-col space-y-1">
-                <p class="text-xs text-purple-400 font-medium uppercase tracking-widest">
+            <div class="mt-10 space-y-2">
+                <p class="text-[11px] text-purple-400 font-bold uppercase tracking-[0.2em]">
                     Corporate & Personal Gifting
                 </p>
                 <p class="text-[10px] text-gray-400">
-                    © 2024 Dora Luxury Gifting. All rights reserved.
+                    © 2024-25 Dora Luxury Gifting. All rights reserved.
                 </p>
             </div>
         </div>
